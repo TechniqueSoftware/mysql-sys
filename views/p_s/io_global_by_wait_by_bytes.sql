@@ -44,7 +44,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW io_global_by_wait_by_bytes (
   event_name,
@@ -105,7 +105,7 @@ SELECT SUBSTRING_INDEX(event_name, '/', -2) event_name,
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$io_global_by_wait_by_bytes (
   event_name,

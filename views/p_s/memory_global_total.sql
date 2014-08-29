@@ -29,7 +29,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW memory_global_total (
   total_allocated
@@ -53,7 +53,7 @@ SELECT sys.format_bytes(SUM(CURRENT_NUMBER_OF_BYTES_USED)) total_allocated
 
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$memory_global_total (
   total_allocated

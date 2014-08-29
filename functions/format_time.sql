@@ -17,7 +17,7 @@ DROP FUNCTION IF EXISTS format_time;
 
 DELIMITER $$
 
-CREATE DEFINER='root'@'localhost' FUNCTION format_time (
+CREATE DEFINER=CURRENT_USER FUNCTION format_time (
         picoseconds BIGINT UNSIGNED
     )
     RETURNS VARCHAR(16) CHARSET UTF8

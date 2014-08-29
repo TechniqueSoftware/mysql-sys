@@ -39,7 +39,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW io_by_thread_by_latency (
   user,
@@ -96,7 +96,7 @@ SELECT IF(processlist_id IS NULL,
 
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$io_by_thread_by_latency (
   user,

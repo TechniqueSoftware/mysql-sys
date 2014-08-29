@@ -29,7 +29,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW user_summary (
   user,
@@ -75,7 +75,7 @@ SELECT accounts.user,
 
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$user_summary (
   user,

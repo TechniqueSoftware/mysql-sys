@@ -22,7 +22,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$ps_digest_avg_latency_distribution (
   cnt,
@@ -50,7 +50,7 @@ SELECT COUNT(*) cnt,
 
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$ps_digest_95th_percentile_by_avg_us (
   avg_us,
@@ -86,7 +86,7 @@ HAVING percentile > 0.95
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW statements_with_runtimes_in_95th_percentile (
   query,
@@ -155,7 +155,7 @@ SELECT sys.format_statement(DIGEST_TEXT) AS query,
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$statements_with_runtimes_in_95th_percentile (
   query,

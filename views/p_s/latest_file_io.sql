@@ -33,7 +33,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW latest_file_io (
   thread,
@@ -77,7 +77,7 @@ SELECT IF(id IS NULL,
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$latest_file_io (
   thread,

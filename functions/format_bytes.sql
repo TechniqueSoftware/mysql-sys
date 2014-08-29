@@ -17,7 +17,7 @@ DROP FUNCTION IF EXISTS format_bytes;
 
 DELIMITER $$
 
-CREATE DEFINER='root'@'localhost' FUNCTION format_bytes (
+CREATE DEFINER=CURRENT_USER FUNCTION format_bytes (
         bytes BIGINT
     )
     RETURNS VARCHAR(16)

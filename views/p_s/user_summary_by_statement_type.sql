@@ -34,7 +34,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW user_summary_by_statement_type (
   user,
@@ -84,7 +84,7 @@ SELECT user,
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$user_summary_by_statement_type (
   user,

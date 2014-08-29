@@ -38,7 +38,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW statements_with_temp_tables (
   query,
@@ -93,7 +93,7 @@ ORDER BY SUM_CREATED_TMP_DISK_TABLES DESC, SUM_CREATED_TMP_TABLES DESC;
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$statements_with_temp_tables (
   query,

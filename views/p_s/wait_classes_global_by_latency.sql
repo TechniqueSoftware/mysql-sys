@@ -34,7 +34,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW wait_classes_global_by_latency (
   event_class,
@@ -77,7 +77,7 @@ SELECT SUBSTRING_INDEX(event_name,'/', 3) AS event_class,
 
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$wait_classes_global_by_latency (
   event_class,

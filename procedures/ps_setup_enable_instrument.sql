@@ -17,7 +17,7 @@ DROP PROCEDURE IF EXISTS ps_setup_enable_instrument;
 
 DELIMITER $$
 
-CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_enable_instrument (
+CREATE DEFINER=CURRENT_USER PROCEDURE ps_setup_enable_instrument (
         IN in_pattern VARCHAR(128)
     )
     COMMENT '
@@ -26,8 +26,6 @@ CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_enable_instrument (
 
              Enables instruments within Performance Schema 
              matching the input pattern.
-
-             Requires the SUPER privilege for "SET sql_log_bin = 0;".
 
              Parameters
              -----------
@@ -78,8 +76,6 @@ CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_enable_instrument (
     NOT DETERMINISTIC
     MODIFIES SQL DATA
 BEGIN
-    SET @log_bin := @@sql_log_bin;
-    SET sql_log_bin = 0;
 
     UPDATE performance_schema.setup_instruments
        SET enabled = 'YES', timed = 'YES'
@@ -87,7 +83,6 @@ BEGIN
 
     SELECT CONCAT('Enabled ', @rows := ROW_COUNT(), ' instrument', IF(@rows != 1, 's', '')) AS summary;
 
-    SET sql_log_bin = @log_bin; 
 END$$
 
 DELIMITER ;

@@ -17,7 +17,7 @@ DROP PROCEDURE IF EXISTS ps_setup_reset_to_default;
 
 DELIMITER $$
 
-CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_reset_to_default (
+CREATE DEFINER=CURRENT_USER PROCEDURE ps_setup_reset_to_default (
        IN in_verbose BOOLEAN
     )
     COMMENT '
@@ -57,8 +57,6 @@ CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_reset_to_default (
     NOT DETERMINISTIC
     MODIFIES SQL DATA
 BEGIN
-    SET @log_bin := @@sql_log_bin;
-    SET sql_log_bin = 0;
 
     SET @query = 'DELETE
                     FROM performance_schema.setup_actors
@@ -150,7 +148,6 @@ BEGIN
     EXECUTE reset_stmt;
     DEALLOCATE PREPARE reset_stmt;
 
-    SET sql_log_bin = @log_bin; 
 END$$
 
 DELIMITER ;

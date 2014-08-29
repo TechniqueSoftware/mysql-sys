@@ -17,7 +17,7 @@ DROP PROCEDURE IF EXISTS ps_setup_reload_saved;
 
 DELIMITER $$
 
-CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_reload_saved ()
+CREATE DEFINER=CURRENT_USER PROCEDURE ps_setup_reload_saved ()
     COMMENT '
              Description
              -----------
@@ -28,8 +28,6 @@ CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_reload_saved ()
              
              Use the companion procedure - ps_setup_save(), to 
              save a configuration.
-
-             Requires the SUPER privilege for "SET sql_log_bin = 0;".
 
              Parameters
              -----------
@@ -65,8 +63,6 @@ BEGIN
            SET MESSAGE_TEXT = 'An error occurred, was sys.ps_setup_save() run before this procedure?';
     END;
 
-    SET @log_bin := @@sql_log_bin;
-    SET sql_log_bin = 0;
 
     SELECT IS_USED_LOCK('sys.ps_setup_save') INTO v_lock_used_by;
 
@@ -140,7 +136,6 @@ BEGIN
 
     SELECT RELEASE_LOCK('sys.ps_setup_save') INTO v_lock_result;
 
-    SET sql_log_bin = @log_bin; 
 END$$
 
 DELIMITER ;

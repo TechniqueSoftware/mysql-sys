@@ -41,7 +41,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW statements_with_full_table_scans (
   query,
@@ -106,7 +106,7 @@ SELECT sys.format_statement(DIGEST_TEXT) AS query,
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$statements_with_full_table_scans (
   query,

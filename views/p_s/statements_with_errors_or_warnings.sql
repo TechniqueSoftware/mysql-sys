@@ -35,7 +35,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW statements_with_errors_or_warnings (
   query,
@@ -86,7 +86,7 @@ ORDER BY SUM_ERRORS DESC, SUM_WARNINGS DESC;
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$statements_with_errors_or_warnings (
   query,

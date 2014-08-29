@@ -17,7 +17,7 @@ DROP FUNCTION IF EXISTS format_statement;
 
 DELIMITER $$
 
-CREATE DEFINER='root'@'localhost' FUNCTION format_statement (
+CREATE DEFINER=CURRENT_USER FUNCTION format_statement (
         statement LONGTEXT
     )
     RETURNS VARCHAR(65)

@@ -17,7 +17,7 @@ DROP PROCEDURE IF EXISTS ps_setup_enable_thread;
 
 DELIMITER $$
 
-CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_enable_thread (
+CREATE DEFINER=CURRENT_USER PROCEDURE ps_setup_enable_thread (
         IN in_connection_id BIGINT
     )
     COMMENT '
@@ -25,8 +25,6 @@ CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_enable_thread (
              -----------
 
              Enable the given connection/thread in Performance Schema.
-
-             Requires the SUPER privilege for "SET sql_log_bin = 0;".
 
              Parameters
              -----------
@@ -60,8 +58,6 @@ CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_enable_thread (
     NOT DETERMINISTIC
     MODIFIES SQL DATA
 BEGIN
-    SET @log_bin := @@sql_log_bin;
-    SET sql_log_bin = 0;
 
     UPDATE performance_schema.threads
        SET instrumented = 'YES'
@@ -69,7 +65,6 @@ BEGIN
 
     SELECT CONCAT('Enabled ', @rows := ROW_COUNT(), ' thread', IF(@rows != 1, 's', '')) AS summary;
 
-    SET sql_log_bin = @log_bin; 
 END$$
 
 DELIMITER ;

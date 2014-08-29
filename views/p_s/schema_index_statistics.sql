@@ -35,7 +35,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW schema_index_statistics (
   table_schema,
@@ -87,7 +87,7 @@ SELECT OBJECT_SCHEMA AS table_schema,
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$schema_index_statistics (
   table_schema,

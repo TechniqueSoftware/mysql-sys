@@ -17,14 +17,12 @@ DROP PROCEDURE IF EXISTS ps_setup_enable_background_threads;
 
 DELIMITER $$
 
-CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_enable_background_threads ()
+CREATE DEFINER=CURRENT_USER PROCEDURE ps_setup_enable_background_threads ()
     COMMENT '
              Description
              -----------
 
              Enable all background thread instrumentation within Performance Schema.
-
-             Requires the SUPER privilege for "SET sql_log_bin = 0;".
 
              Parameters
              -----------
@@ -46,8 +44,6 @@ CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_enable_background_threads (
     NOT DETERMINISTIC
     MODIFIES SQL DATA
 BEGIN
-    SET @log_bin := @@sql_log_bin;
-    SET sql_log_bin = 0;
 
     UPDATE performance_schema.threads
        SET instrumented = 'YES'
@@ -55,7 +51,6 @@ BEGIN
 
     SELECT CONCAT('Enabled ', @rows := ROW_COUNT(), ' background thread', IF(@rows != 1, 's', '')) AS summary;
 
-    SET sql_log_bin = @log_bin; 
 END$$
 
 DELIMITER ;

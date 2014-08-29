@@ -50,7 +50,7 @@
  
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW processlist (
   thd_id,
@@ -148,7 +148,7 @@ SELECT pps.thread_id AS thd_id,
  
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$processlist (
   thd_id,

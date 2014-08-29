@@ -17,7 +17,7 @@ DROP FUNCTION IF EXISTS format_path;
 
 DELIMITER $$
 
-CREATE DEFINER='root'@'localhost' FUNCTION format_path (
+CREATE DEFINER=CURRENT_USER FUNCTION format_path (
         path VARCHAR(260)
     )
     RETURNS VARCHAR(260) CHARSET UTF8

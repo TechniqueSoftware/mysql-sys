@@ -33,7 +33,7 @@
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW io_global_by_file_by_latency (
   file,
@@ -78,7 +78,7 @@ SELECT sys.format_path(file_name) AS file,
 
 CREATE OR REPLACE
   ALGORITHM = MERGE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$io_global_by_file_by_latency (
   file,

@@ -17,7 +17,7 @@ DROP PROCEDURE IF EXISTS ps_setup_save;
 
 DELIMITER $$
 
-CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_save (
+CREATE DEFINER=CURRENT_USER PROCEDURE ps_setup_save (
         IN in_timeout INT
     )
     COMMENT '
@@ -30,8 +30,6 @@ CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_save (
 
              Use the companion procedure - ps_setup_reload_saved(), to 
              restore the saved config.
-
-             Requires the SUPER privilege for "SET sql_log_bin = 0;".
 
              Parameters
              -----------
@@ -60,9 +58,6 @@ CREATE DEFINER='root'@'localhost' PROCEDURE ps_setup_save (
 BEGIN
     DECLARE v_lock_result INT;
 
-    SET @log_bin := @@sql_log_bin;
-    SET sql_log_bin = 0;
-
     SELECT GET_LOCK('sys.ps_setup_save', in_timeout) INTO v_lock_result;
 
     IF v_lock_result THEN
@@ -85,7 +80,6 @@ BEGIN
            SET MESSAGE_TEXT = 'Could not lock the sys.ps_setup_save user lock, another thread has a saved configuration';
     END IF;
 
-    SET sql_log_bin = @log_bin;
 END$$
 
 DELIMITER ;

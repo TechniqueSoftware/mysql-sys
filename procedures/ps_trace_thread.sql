@@ -16,7 +16,7 @@
 DROP PROCEDURE IF EXISTS ps_trace_thread;
 
 DELIMITER $$
-CREATE DEFINER='root'@'localhost' PROCEDURE ps_trace_thread (
+CREATE DEFINER=CURRENT_USER PROCEDURE ps_trace_thread (
         IN in_thread_id INT,
         IN in_outfile VARCHAR(255),
         IN in_max_runtime DECIMAL(20,2),

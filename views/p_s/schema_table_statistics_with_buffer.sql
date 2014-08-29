@@ -53,7 +53,7 @@
  
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW schema_table_statistics_with_buffer (
   table_schema,
@@ -155,7 +155,7 @@ SELECT pst.object_schema AS table_schema,
  
 CREATE OR REPLACE
   ALGORITHM = TEMPTABLE
-  DEFINER = 'root'@'localhost'
+  DEFINER = CURRENT_USER
   SQL SECURITY INVOKER 
 VIEW x$schema_table_statistics_with_buffer (
   table_schema,

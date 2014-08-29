@@ -17,7 +17,7 @@ DROP FUNCTION IF EXISTS ps_thread_stack;
 
 DELIMITER $$
 
-CREATE DEFINER='root'@'localhost' FUNCTION ps_thread_stack (
+CREATE DEFINER=CURRENT_USER FUNCTION ps_thread_stack (
         thd_id INT,
         debug BOOLEAN
     )
